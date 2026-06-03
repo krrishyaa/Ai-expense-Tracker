@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Insights | Nexus Ledger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#2a292f",
+                    "primary": "#c6bfff",
+                    "background": "#131318",
+                    "surface": "#131318",
+                    "on-background": "#e4e1e9",
+                    "outline": "#928ea0",
+                    "on-error": "#690005",
+                    "surface-container": "#1f1f25",
+                    "on-tertiary-container": "#5a001f",
+                    "inverse-on-surface": "#303036",
+                    "on-surface-variant": "#c8c4d7",
+                    "text-primary": "#f0eeff",
+                    "surface-variant": "#35343a",
+                    "inverse-primary": "#5844d9",
+                    "primary-container": "#8d7fff",
+                    "secondary-fixed": "#4effb8",
+                    "secondary": "#46f9b2",
+                    "chart-yellow": "#ffd166",
+                    "outline-variant": "#474555",
+                    "border-bold": "rgba(255,255,255,0.13)",
+                    "tertiary-container": "#ef5f7e",
+                    "border-subtle": "rgba(255,255,255,0.07)",
+                    "on-secondary-container": "#005b3c",
+                    "surface-elevated": "#18181f",
+                    "surface-dim": "#131318",
+                    "on-surface": "#e4e1e9",
+                    "surface-container-highest": "#35343a",
+                    "tertiary": "#ffb2bd",
+                    "tertiary-fixed-dim": "#ffb2bd",
+                    "surface-core": "#111118",
+                    "surface-container-low": "#1b1b20",
+                    "surface-container-lowest": "#0e0e13",
+                    "on-tertiary-fixed": "#400013",
+                    "on-secondary": "#003824",
+                    "primary-fixed-dim": "#c6bfff",
+                    "text-muted": "rgba(240,238,255,0.45)",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-tertiary-fixed-variant": "#8c1037",
+                    "on-primary": "#29009f",
+                    "on-secondary-fixed": "#002113",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-container": "#23008d",
+                    "inverse-surface": "#e4e1e9",
+                    "on-tertiary": "#670024",
+                    "secondary-fixed-dim": "#1be19d",
+                    "on-primary-fixed-variant": "#4025c1",
+                    "primary-fixed": "#e4dfff",
+                    "error-container": "#93000a",
+                    "secondary-container": "#02dc98",
+                    "on-primary-fixed": "#170066",
+                    "surface-tint": "#c6bfff",
+                    "status-error": "#ff6b6b",
+                    "surface-bright": "#39383e",
+                    "tertiary-fixed": "#ffd9dd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gap-sm": "12px",
+                    "gap-lg": "48px",
+                    "gap-xs": "8px",
+                    "base": "4px",
+                    "section-h-desktop": "40px",
+                    "gap-md": "16px",
+                    "section-v-desktop": "100px",
+                    "container-max": "900px"
+            },
+            "fontFamily": {
+                    "body-lg": ["JetBrains Mono"],
+                    "hero-display-mobile": ["Syne"],
+                    "section-title": ["Syne"],
+                    "label-caps": ["JetBrains Mono"],
+                    "data-highlight": ["Syne"],
+                    "body-md": ["JetBrains Mono"],
+                    "hero-display": ["Syne"],
+                    "code-block": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-lg": ["17px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "hero-display-mobile": ["48px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "section-title": ["40px", {"lineHeight": "1.1", "fontWeight": "800"}],
+                    "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "data-highlight": ["32px", {"lineHeight": "1.0", "fontWeight": "800"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "hero-display": ["88px", {"lineHeight": "0.95", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "code-block": ["13px", {"lineHeight": "2.0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            background: rgba(24, 24, 31, 0.6);
+        }
+        .glow-purple:hover {
+            box-shadow: 0 8px 24px rgba(124, 107, 255, 0.4);
+        }
+        .glow-mint:hover {
+            box-shadow: 0 8px 24px rgba(70, 249, 178, 0.2);
+        }
+        .ai-pulse {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #35343a; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="hidden md:flex flex-col h-screen w-64 sticky top-0 bg-surface-container border-r border-border-subtle p-4 gap-md z-50">
+<div class="mb-8">
+<h1 class="font-hero-display-mobile text-hero-display-mobile text-primary tracking-tighter">Nexus AI</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary ai-pulse"></span> Syncing...
+                </p>
+</div>
+<nav class="flex-grow flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-caps text-label-caps">Expenses</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span>AI Insights</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps">Budgets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</nav>
+<button class="mt-4 w-full py-3 bg-primary text-on-primary rounded-[10px] font-bold glow-purple transition-all duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="add">add</span> Add Expense
+            </button>
+<div class="mt-auto border-t border-border-subtle pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span> Help
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span> Logout
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-border-subtle">
+<div class="flex items-center gap-4">
+<span class="font-hero-display-mobile text-hero-display-mobile font-extrabold text-primary tracking-tighter md:hidden">Nexus</span>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</span>
+<input class="bg-surface-container-lowest border-border-subtle rounded-lg pl-10 pr-4 py-2 font-body-md text-body-md focus:border-primary focus:ring-0 w-64 md:w-80" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="sync">sync</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-tertiary-container rounded-full"></span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-primary/20" data-alt="A close-up portrait of a sophisticated, professional individual in a minimalist studio environment. The lighting is low-key and dramatic, casting soft shadows that highlight structural facial features. The background is a deep, textured charcoal grey, maintaining a high-fidelity and intelligent aesthetic. The person wears a sleek, modern black turtleneck, reflecting a high-tech developer or financial expert persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4DVIED98Z2aabMR9HqcZi_bHGpDsUi9tMJhtzlHoqJSVCwEDxXrLTVUJvj9cQ1GaIXE7y52RStxCxb_Rg3m8Yq-n3i1Cz5Gt_TCZSQQMnqqtRm2q57Rkohsw04IHmMs5nLW9GHJz9T5VZY2bNXWD3IyOBSq4-p9_1UkS8i9mgVAs_K7Hwh_6vmb9SGCcMmuFkyCM-GqJjmXZB7D2cXourEDtrRQ3a1g0yXmqo8xDmHKg3I02ak5Z7NJyrgTwEZxOFUx7ozQuxJmw"/>
+</div>
+</header>
+<div class="max-w-container-max mx-auto px-4 py-section-v-desktop space-y-12">
+<!-- Financial Brain Visualization Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gap-lg items-center">
+<div class="space-y-6">
+<h2 class="font-section-title text-section-title text-text-primary">Cognitive <span class="text-primary">Engine</span></h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Our ML models process thousands of data points per second to map your spending habits onto a semantic neural graph. This high-fidelity visualization represents how our engine categorizes and predicts your financial future.</p>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-label-caps font-label-caps text-secondary">AI-CATEGORIZED</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-label-caps font-label-caps text-primary">REAL-TIME SYNC</span>
+</div>
+</div>
+</div>
+<div class="relative h-[400px] w-full rounded-xl overflow-hidden glass-panel border border-border-subtle group">
+<!-- Abstract AI Graphic Placeholder -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<!-- Visual representation of "Financial Brain" -->
+<div class="relative w-64 h-64">
+<div class="absolute inset-0 rounded-full border-2 border-dashed border-primary/20 animate-[spin_20s_linear_infinite]"></div>
+<div class="absolute inset-4 rounded-full border border-secondary/30 animate-[spin_12s_linear_infinite_reverse]"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-primary drop-shadow-[0_0_15px_rgba(198,191,255,0.4)]" data-icon="psychology">psychology</span>
+</div>
+<!-- Nodes -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-secondary rounded-full blur-[2px]"></div>
+<div class="absolute bottom-10 right-4 w-4 h-4 bg-primary rounded-full blur-[3px]"></div>
+<div class="absolute bottom-20 left-0 w-2 h-2 bg-tertiary rounded-full blur-[1px]"></div>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 font-code-block text-code-block text-text-muted">
+                            LATENCY: 14ms<br/>MODEL: XL-LEDGER-V4
+                        </div>
+</div>
+</section>
+<!-- Deep Analytics: Multi-line Chart Forecast -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-caps text-label-caps text-primary mb-2">PREDICTIVE MODELING</p>
+<h3 class="font-section-title text-section-title">3-Month Forecast</h3>
+</div>
+<div class="flex gap-4">
+<span class="flex items-center gap-2 text-label-caps font-label-caps"><span class="w-3 h-[2px] bg-primary"></span> Fixed Costs</span>
+<span class="flex items-center gap-2 text-label-caps font-label-caps"><span class="w-3 h-[2px] bg-secondary"></span> Projected Spending</span>
+</div>
+</div>
+<div class="h-80 w-full glass-panel border border-border-subtle rounded-xl p-6 relative overflow-hidden">
+<!-- Chart Mockup -->
+<div class="absolute inset-0 p-8 flex items-end gap-2">
+<!-- SVG for line chart -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none">
+<path class="text-primary drop-shadow-[0_0_8px_rgba(198,191,255,0.6)]" d="M0 80 Q 150 120 300 40 T 600 100 T 900 20" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-secondary opacity-60" d="M0 120 Q 150 150 300 110 T 600 140 T 900 90" fill="none" stroke="currentColor" stroke-dasharray="8,4" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Axis Labels -->
+<div class="absolute bottom-4 left-6 right-6 flex justify-between font-label-caps text-label-caps text-text-muted">
+<span>CURRENT</span>
+<span>MONTH 1</span>
+<span>MONTH 2</span>
+<span>MONTH 3</span>
+</div>
+<div class="absolute top-6 right-6 bg-surface-elevated/80 border border-border-bold p-3 rounded-lg backdrop-blur-md">
+<p class="font-label-caps text-label-caps text-primary">AI INSIGHT</p>
+<p class="text-body-md font-body-md">+12% anticipated variance due to subscription cycles.</p>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Smart Budgeting & Reports -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gap-md">
+<!-- Smart Budgeting Recommendations -->
+<div class="md:col-span-2 glass-panel border border-border-subtle rounded-xl p-6 space-y-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+<h4 class="font-data-highlight text-data-highlight">Smart Recommendations</h4>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-border-subtle rounded-lg hover:border-primary transition-all duration-300">
+<div class="flex gap-4 items-center">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="coffee">coffee</span>
+</div>
+<div>
+<p class="font-body-lg text-text-primary">Reduce Food &amp; Drink</p>
+<p class="text-body-md text-text-muted">Save approx. $124/mo by limiting morning takeout.</p>
+</div>
+</div>
+<button class="px-4 py-2 border border-secondary text-secondary rounded-lg font-label-caps text-label-caps hover:bg-secondary hover:text-on-secondary transition-all">APPLY</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-border-subtle rounded-lg hover:border-primary transition-all duration-300">
+<div class="flex gap-4 items-center">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="subscriptions">subscriptions</span>
+</div>
+<div>
+<p class="font-body-lg text-text-primary">Consolidate SaaS</p>
+<p class="text-body-md text-text-muted">You have 3 overlapping storage subscriptions.</p>
+</div>
+</div>
+<button class="px-4 py-2 border border-primary text-primary rounded-lg font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all">VIEW</button>
+</div>
+</div>
+</div>
+<!-- Automated Reports -->
+<div class="glass-panel border border-border-subtle rounded-xl p-6 flex flex-col">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<h4 class="font-data-highlight text-data-highlight">Reports</h4>
+</div>
+<div class="flex-grow space-y-3 overflow-y-auto max-h-64 pr-2">
+<div class="flex items-center justify-between py-3 border-b border-border-subtle group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div>
+<p class="text-body-md text-text-primary">Q2_Financial_Audit.pdf</p>
+<p class="font-label-caps text-[9px] text-text-muted">GEN BY CELERY • 2M AGO</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="download">download</button>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-border-subtle group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors" data-icon="csv">csv</span>
+<div>
+<p class="text-body-md text-text-primary">Tax_Export_2023.csv</p>
+<p class="font-label-caps text-[9px] text-text-muted">GEN BY CELERY • 5D AGO</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="download">download</button>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-border-subtle group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div>
+<p class="text-body-md text-text-primary">Monthly_Recap_May.pdf</p>
+<p class="font-label-caps text-[9px] text-text-muted">GEN BY CELERY • 10D AGO</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="download">download</button>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-surface-variant hover:bg-surface-bright text-on-surface-variant rounded-lg font-label-caps text-label-caps transition-all">GENERATE NEW</button>
+</div>
+</div>
+<!-- Chat Interface: Ask Your Financial AI -->
+<section class="space-y-6">
+<div class="glass-panel border-2 border-primary/20 rounded-xl overflow-hidden shadow-2xl">
+<div class="bg-primary/10 px-6 py-3 border-b border-primary/20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-status-error"></div>
+<div class="w-2 h-2 rounded-full bg-chart-yellow"></div>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="ml-4 font-code-block text-code-block text-primary uppercase tracking-widest">NEXUS-TERMINAL-V2.0</span>
+</div>
+<span class="font-code-block text-code-block text-text-muted opacity-50">ENCRYPTED</span>
+</div>
+<div class="p-8 font-code-block text-code-block space-y-4 min-h-[300px]">
+<div class="flex gap-4">
+<span class="text-primary shrink-0">user@nexus:~$</span>
+<span class="text-text-primary">How much did I spend on coffee in Q1?</span>
+</div>
+<div class="flex gap-4">
+<span class="text-secondary shrink-0">nexus:ai_engine:~$</span>
+<div class="text-secondary space-y-2">
+<p>Processing query for Period [2024-01-01 to 2024-03-31]...</p>
+<p>Scan complete. Found 42 transactions under category [Beverages/Coffee].</p>
+<p class="bg-secondary/10 p-2 inline-block rounded">TOTAL Q1 COFFEE SPEND: $542.15 (Trend: +4.2% vs Q4)</p>
+</div>
+</div>
+<div class="flex gap-4 mt-8 animate-pulse">
+<span class="text-primary shrink-0">user@nexus:~$</span>
+<span class="w-2 h-5 bg-primary"></span>
+</div>
+</div>
+<div class="p-4 bg-surface-container-lowest border-t border-border-subtle">
+<form class="flex gap-4 items-center">
+<input class="flex-grow bg-transparent border-none focus:ring-0 font-code-block text-text-primary" placeholder="Type a command or question (e.g., 'Export Q2 taxes')..." type="text"/>
+<button class="bg-primary text-on-primary p-2 rounded-lg hover:scale-105 transition-transform" type="submit">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</form>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer (Shared Component) -->
+<footer class="max-w-container-max mx-auto w-full py-8 flex justify-between items-center px-4 border-t border-border-subtle">
+<div class="flex flex-col">
+<p class="font-bold text-primary">Nexus Ledger</p>
+<p class="font-label-caps text-label-caps text-text-muted mt-1">Deployed on Render</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-caps text-label-caps text-text-muted hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">GitHub</a>
+<a class="font-label-caps text-label-caps text-text-muted hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Documentation</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- Mobile Navigation (Responsive Pivot) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-panel border-t border-border-subtle flex justify-around items-center py-4 z-50">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-label-caps">DASHBOARD</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="text-[10px] font-label-caps">EXPENSES</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="psychology" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="text-[10px] font-label-caps">INSIGHTS</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-label-caps">SETTINGS</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for the terminal typing effect (simple simulation)
+        const terminalInput = document.querySelector('input[placeholder*="Type a command"]');
+        if(terminalInput) {
+            terminalInput.addEventListener('keydown', (e) => {
+                if(e.key === 'Enter') {
+                    e.preventDefault();
+                    terminalInput.value = '';
+                    alert('Command received by Nexus AI Engine.');
+                }
+            });
+        }
+    </script>
+</body></html>

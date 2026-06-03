@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "stitch": {
+      "command": "npx",
+      "args": ["@google-cloud/stitch-cli"],
+      "disabled": false,
+      "description": "Stitch UI design and screen generation for AI Expense Tracker"
+    }
+  }
+}
