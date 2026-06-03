@@ -60,6 +60,7 @@ npm-debug.log
 yarn-error.log
 dist/
 .parcel-cache
+frontend/MiniMax Code Setup 3.0.35.exe
 
 # Build
 build/
